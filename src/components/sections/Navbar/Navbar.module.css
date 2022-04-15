@@ -1,20 +1,29 @@
 .navbar {
     width: 100%;
-    background: #effaf0;
+    background: #77B28C;
     margin-top: 0;
-    padding: 20px 10px;
+    padding: 3px 3px;
     box-sizing: border-box;
+    font-weight: 500;
 }
 .navbar ul {
     display: flex;
-    margin: 0 auto;
-    max-width: 960px;
     align-items: center;
+    margin: 0 auto;
+    max-width: 1200px;
 }
-.navbar button, .navbar a {
-    margin-left: 16px;
+.navbar li, .navbar a {
+    margin-right: 16px;
 }
 .navbar a {
     color: #333;
     text-decoration: none;
+}
+.push {
+    margin-left: auto;
+}
+.logo {
+    width: 48px;
+    height: 48px;
+    margin: 0;
 }

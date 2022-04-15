@@ -1,0 +1,45 @@
+.outer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0;
+}
+.inner {
+    display: flex;
+    justify-content: center;
+    flex-basis: 1200px;
+    flex-shrink: 1;
+    flex-grow: 0;
+    margin: 0 30px;
+
+}
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 360px;
+    margin: 150px auto;
+    padding: 10px;
+}
+.login label {
+    margin-bottom: 18px;
+}
+.login span {
+    display: block;
+}
+.login input {
+    padding: 2px 4px;
+    height: 23px;
+    width: 240px;
+    border: 2px solid #77B28C;
+    border-radius: 4px;
+}
+.login input:focus {
+    outline: none;
+    border: 2px solid #004225;
+}
+.login p {
+    align-self: center;
+}

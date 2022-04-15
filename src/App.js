@@ -1,8 +1,10 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route} from 'react-router-dom';
+import { BrowserRouter, Switch, Redirect, Route} from 'react-router-dom';
+import { useAuthContext } from './hooks/useAuthContext';
 
 // pages
 import Home from './pages/home/Home';
+import PickTeam from './pages/pickteam/PickTeam';
 import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 
@@ -10,26 +12,33 @@ import Signup from './pages/signup/Signup';
 import Navbar from './components/sections/Navbar/Navbar';
 
 function App() {
+  const { user, authIsReady } = useAuthContext();
+
   return (
       <div className="App">
-          <BrowserRouter>
+          {authIsReady && (
+              <BrowserRouter>
+                  <Navbar />
 
-              <Navbar />
+                  <Switch>
+                      <Route exact path="/" >
+                          {user && <Home />}
+                          {!user && <Redirect to="/login"/>}
+                      </Route>
 
-              <Switch>
-                  <Route exact path="/" >
-                      <Home />
-                  </Route>
+                      <Route path="/login">
+                          {!user && <Login />}
+                          {user && <Redirect to="/"/>}
+                      </Route>
 
-                  <Route path="/login">
-                      <Login />
-                  </Route>
-
-                  <Route path="/signup">
-                      <Signup />
-                  </Route>
-              </Switch>
-          </BrowserRouter>
+                      <Route path="/signup">
+                          {!user && <Signup />}
+                          {user && user.displayName && <Redirect to="/"/>}
+                          <Signup />
+                      </Route>
+                  </Switch>
+              </BrowserRouter>
+          )}
       </div>
   );
 }
