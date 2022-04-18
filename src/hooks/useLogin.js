@@ -17,20 +17,20 @@ export const useLogin = () => {
 
         // log the user in
         try {
+            // login
             const res = await projectAuth.signInWithEmailAndPassword(email, password);
 
-            // dispatch logout action (context)
+            // dispatch login action (context)
             dispatch({ type: 'LOGIN', payload: res.user })
 
             // update state
             if (!isCancelled) {
-                setError(null);
                 setIsPending(false);
+                setError(null);
             }
 
         } catch (e) {
             if (!isCancelled) {
-                console.log(e.message);
                 setError(e.message);
                 setIsPending(false);
             }

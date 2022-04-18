@@ -26,6 +26,11 @@ function App() {
                           {!user && <Redirect to="/login"/>}
                       </Route>
 
+                      <Route path="/pickteam">
+                          {user && <PickTeam />}
+                          {!user && <Redirect to="/login"/>}
+                      </Route>
+
                       <Route path="/login">
                           {!user && <Login />}
                           {user && <Redirect to="/"/>}
@@ -33,7 +38,7 @@ function App() {
 
                       <Route path="/signup">
                           {!user && <Signup />}
-                          {user && user.displayName && <Redirect to="/"/>}
+                          {user && <Redirect to="/"/>}
                           <Signup />
                       </Route>
                   </Switch>
