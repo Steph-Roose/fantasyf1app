@@ -15,7 +15,7 @@ function Signup(data) {
     }
 
     return (
-        <div className={styles.background}>
+        <div className="bg-image">
             <form onSubmit={handleSubmit} className={styles.signup}>
                 <h2>Sign up</h2>
                 <label>

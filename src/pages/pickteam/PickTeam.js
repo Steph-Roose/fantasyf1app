@@ -1,8 +1,14 @@
 import React from 'react';
 
+import styles from './PickTeam.module.css';
+
 function PickTeam() {
     return (
-        <div>
+        <div className="bg-image">
+
+            <div className={styles.container}>
+                <h2>Pick Team</h2>
+            </div>
 
         </div>
     );

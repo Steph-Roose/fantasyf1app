@@ -15,7 +15,7 @@ function Login(props) {
     }
 
     return (
-        <div className={styles.background}>
+        <div className="bg-image">
             <form onSubmit={handleSubmit} className={styles.login}>
                 <h2>Login</h2>
                 <label>
@@ -26,6 +26,7 @@ function Login(props) {
                         value={email}
                     />
                 </label>
+
                 <label>
                     <span>Password:</span>
                     <input

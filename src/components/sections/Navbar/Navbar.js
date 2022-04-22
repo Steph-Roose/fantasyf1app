@@ -13,39 +13,41 @@ function Navbar() {
     const location = useLocation();
 
     return (
-        <nav className={styles.navbar}>
-            <ul>
-                {user && (
-                    <li><Link to="/">Home</Link></li>
-                )}
+        <header>
+            <nav className={styles.navbar}>
+                <ul>
+                    {user && (
+                        <li><Link to="/">Home</Link></li>
+                    )}
 
-                {!user && (
-                    location.pathname !== "/signup" ? <li><Link to="/signup">Sign up</Link></li> : <li><Link to="/login">Login</Link></li>
-                )}
+                    {!user && (
+                        location.pathname !== "/signup" ? <li><Link to="/signup">Sign up</Link></li> : <li><Link to="/login">Login</Link></li>
+                    )}
 
-                <li><Link to="/rules">Rules</Link></li>
+                    <li><Link to="/rules">Rules</Link></li>
 
-                {user && (
-                    <>
-                        <li><Link to="/standings">Standings</Link></li>
+                    {user && (
+                        <>
+                            <li><Link to="/standings">Standings</Link></li>
 
-                        <li className={styles.push}>
-                            <button onClick={ logout } className="btn">Logout</button>
-                        </li>
+                            <li className={styles.push}>
+                                <button onClick={ logout } className="btn">Logout</button>
+                            </li>
 
-                        <li>
-                            <Link to="/account" className={styles.link}>
-                                <img
-                                    src={Account}
-                                    alt="Account"
-                                    className={styles.logo}
-                                />
-                            </Link>
-                        </li>
-                    </>
-                )}
-            </ul>
-        </nav>
+                            <li>
+                                <Link to="/account">
+                                    <img
+                                        src={Account}
+                                        alt="Account"
+                                        className={styles.logo}
+                                    />
+                                </Link>
+                            </li>
+                        </>
+                    )}
+                </ul>
+            </nav>
+        </header>
     );
 }
 

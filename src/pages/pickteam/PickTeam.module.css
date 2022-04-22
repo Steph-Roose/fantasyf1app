@@ -1,0 +1,17 @@
+.bg-image {
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #CCDDDD;
+    width: 1200px;
+    height: inherit;
+    margin: 0 auto;
+}
+.container h2 {
+    margin: 60px 30px 15px;
+}
