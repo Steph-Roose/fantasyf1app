@@ -15,33 +15,31 @@ function Login(props) {
     }
 
     return (
-        <div className={styles.outer}>
-            <div className={styles.inner}>
-                <form onSubmit={handleSubmit} className={styles.login}>
-                    <h2>Login</h2>
-                    <label>
-                        <span>Email:</span>
-                        <input
-                            type="email"
-                            onChange={(e) => setEmail(e.target.value)}
-                            value={email}
-                        />
-                    </label>
-                    <label>
-                        <span>Password:</span>
-                        <input
-                            type="password"
-                            onChange={(e) => setPassword(e.target.value)}
-                            value={password}
-                        />
-                    </label>
+        <div className={styles.background}>
+            <form onSubmit={handleSubmit} className={styles.login}>
+                <h2>Login</h2>
+                <label>
+                    <span>Email:</span>
+                    <input
+                        type="email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                    />
+                </label>
+                <label>
+                    <span>Password:</span>
+                    <input
+                        type="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        value={password}
+                    />
+                </label>
 
-                    {!isPending && <button type="submit" className="btn">Login</button>}
-                    {isPending && <button className="btn" disabled>Loading</button>}
+                {!isPending && <button type="submit" className="btn">Login</button>}
+                {isPending && <button className="btn" disabled>Loading</button>}
 
-                    {error && <p>{error}</p>}
-                </form>
-            </div>
+                {error && <p>{error}</p>}
+            </form>
         </div>
     );
 }

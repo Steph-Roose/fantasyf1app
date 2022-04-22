@@ -1,10 +1,11 @@
 import React from 'react';
-import { BrowserRouter, Switch, Redirect, Route} from 'react-router-dom';
+import { BrowserRouter, Switch, Redirect, Route } from 'react-router-dom';
 import { useAuthContext } from './hooks/useAuthContext';
 
 // pages
 import Home from './pages/home/Home';
 import PickTeam from './pages/pickteam/PickTeam';
+import Standings from './pages/standings/Standings';
 import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 
@@ -28,6 +29,11 @@ function App() {
 
                       <Route path="/pickteam">
                           {user && <PickTeam />}
+                          {!user && <Redirect to="/login"/>}
+                      </Route>
+
+                      <Route path="/standings">
+                          {user && <Standings />}
                           {!user && <Redirect to="/login"/>}
                       </Route>
 

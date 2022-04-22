@@ -15,39 +15,41 @@ function Signup(data) {
     }
 
     return (
-        <div className={styles.outer}>
-            <div className={styles.inner}>
-                <form onSubmit={handleSubmit} className={styles.signup}>
-                    <h2>Signup</h2>
-                    <label>
-                        <span>Username:</span>
-                        <input
-                            type="text"
-                            onChange={(e) => setDisplayName(e.target.value)}
-                            value={displayName}
-                        />
-                    </label>
-                    <label>
-                        <span>Email:</span>
-                        <input
-                            type="email"
-                            onChange={(e) => setEmail(e.target.value)}
-                            value={email}
-                        />
-                    </label>
-                    <label>
-                        <span>Password:</span>
-                        <input
-                            type="password"
-                            onChange={(e) => setPassword(e.target.value)}
-                            value={password}
-                        />
-                    </label>
-                    {!isPending && <button type="submit" className="btn">Signup</button>}
-                    {isPending && <button className="btn" disabled>Loading</button>}
-                    { error && <p>{error}</p> }
-                </form>
-            </div>
+        <div className={styles.background}>
+            <form onSubmit={handleSubmit} className={styles.signup}>
+                <h2>Sign up</h2>
+                <label>
+                    <span>Username:</span>
+                    <input
+                        type="text"
+                        onChange={(e) => setDisplayName(e.target.value)}
+                        value={displayName}
+                    />
+                </label>
+
+                <label>
+                    <span>Email:</span>
+                    <input
+                        type="email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                    />
+                </label>
+
+                <label>
+                    <span>Password:</span>
+                    <input
+                        type="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        value={password}
+                    />
+                </label>
+
+                {!isPending && <button type="submit" className="btn">Sign up</button>}
+                {isPending && <button className="btn" disabled>Loading</button>}
+
+                { error && <p>{error}</p> }
+            </form>
         </div>
     );
 }
