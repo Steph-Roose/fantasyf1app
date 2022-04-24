@@ -1,25 +1,27 @@
 import React from 'react';
-import { useCollection } from '../../../hooks/useCollection';
 
-import styles from '../../../pages/pickteam/PickTeam.module.css';
+import styles from './DriverCards.module.css';
+import {useDrivers} from '../../../hooks/useDrivers';
 
-function DriverCards({drivers}) {
+function DriverCards({ driver }) {
+    const { imgURL } = useDrivers(driver.driverID);
+
+    const image = {imgURL};
+    const id = driver.teamID;
 
     return (
-        <form>
-            <ul className={styles.container}>
-                {drivers && drivers.sort((a, b) => b.dcost - a.dcost).map((driver) => (
-                    <li key={driver.id}>
-                        <input type="checkbox" id={driver.id} className={styles.input} value={driver}/>
-                        <label className={styles.card} htmlFor={driver.id}>
-                            <span className={styles.firstname}>{driver.firstname}</span>
-                            <span className={styles.name}>{driver.name}</span>
-                            <span className={styles.cost}>{driver.dcost}M</span>
-                        </label>
-                    </li>
-                ))}
-            </ul>
-        </form>
+            <li key={driver.id}>
+                <input
+                    type="checkbox"
+                    id={driver.id}
+                    value={driver}
+                />
+                <label className={styles.card} htmlFor={driver.id}>
+                    <span><img src={imgURL} alt="driver" className={styles.image}/></span>
+                    {image && (<span className={styles.team} id={id}>{driver.lastname}</span>)}
+                    <span className={styles.cost} id={id}>{driver.cost}</span>
+                </label>
+            </li>
     );
 }
 

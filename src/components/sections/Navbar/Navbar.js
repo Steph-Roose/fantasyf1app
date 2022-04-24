@@ -15,9 +15,12 @@ function Navbar() {
     return (
         <header>
             <nav className={styles.navbar}>
-                <ul>
+                <ul className={styles.menu}>
                     {user && (
-                        <li><Link to="/">Home</Link></li>
+                        <>
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/standings">Standings</Link></li>
+                        </>
                     )}
 
                     {!user && (
@@ -25,27 +28,23 @@ function Navbar() {
                     )}
 
                     <li><Link to="/rules">Rules</Link></li>
-
-                    {user && (
-                        <>
-                            <li><Link to="/standings">Standings</Link></li>
-
-                            <li className={styles.push}>
-                                <button onClick={ logout } className="btn">Logout</button>
-                            </li>
-
-                            <li>
-                                <Link to="/account">
-                                    <img
-                                        src={Account}
-                                        alt="Account"
-                                        className={styles.logo}
-                                    />
-                                </Link>
-                            </li>
-                        </>
-                    )}
                 </ul>
+
+                {user && (
+                    <ul className={styles.account}>
+                        <li>
+                            <button onClick={ logout } className="btn">Logout</button>
+                        </li>
+                        <li>
+                            <Link to="/account" className={styles.logo}>
+                                <img
+                                    src={Account}
+                                    alt="Account"
+                                />
+                            </Link>
+                        </li>
+                    </ul>
+                    )}
             </nav>
         </header>
     );

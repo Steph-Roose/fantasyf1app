@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useState } from 'react';
-import { projectFirestore } from '../firebase/config';
+import { projectFirestore } from '../api/configfirebase';
 
 let initialState = {
     document: null,
