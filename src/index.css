@@ -65,7 +65,7 @@ input:focus {
     flex-direction: row-reverse;
     margin: 0;
 }
-/* layout home, account, standings*/
+/* layout home, account, standings, rules*/
 .background {
     display: flex;
     flex-direction: column;
@@ -79,14 +79,14 @@ input:focus {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 60px;
+    margin-top: 50px;
     min-height: 450px;
     background-color: #CCDDDD;
 }
 .background img {
     flex: 1;
-
     height: auto;
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 @media only screen and (min-width: 900px) {

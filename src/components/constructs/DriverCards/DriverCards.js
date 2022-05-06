@@ -3,20 +3,21 @@ import React from 'react';
 import styles from './DriverCards.module.css';
 import {useDrivers} from '../../../hooks/useDrivers';
 
-function DriverCards({ driver }) {
+function DriverCards({ value, driver, handleOnChange }) {
     const { imgURL } = useDrivers(driver.driverID);
 
     const image = {imgURL};
     const id = driver.teamID;
 
     return (
-            <li key={driver.id}>
+            <li>
                 <input
                     type="checkbox"
                     id={driver.id}
-                    value={driver}
+                    value={value}
+                    onChange={handleOnChange}
                 />
-                <label className={styles.card} htmlFor={driver.id}>
+                <label className={styles.card} htmlFor={driver.id} key={id}>
                     <span><img src={imgURL} alt="driver" className={styles.image}/></span>
                     {image && (<span className={styles.team} id={id}>{driver.lastname}</span>)}
                     <span className={styles.cost} id={id}>{driver.cost}</span>
