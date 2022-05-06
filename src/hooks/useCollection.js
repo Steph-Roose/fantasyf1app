@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { projectFirestore } from '../api/configfirebase';
+import { projectFirestore } from '../config/configfirebase';
 
 export const useCollection = (collection) => {
     const [documents, setDocuments] = useState(null);

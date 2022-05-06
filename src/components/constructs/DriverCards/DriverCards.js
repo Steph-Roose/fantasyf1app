@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './DriverCards.module.css';
 import {useDrivers} from '../../../hooks/useDrivers';
 
-function DriverCards({ value, driver, handleOnChange }) {
+function DriverCards({ cost, value, driver, handleOnChange }) {
     const { imgURL } = useDrivers(driver.driverID);
 
     const image = {imgURL};
@@ -20,7 +20,7 @@ function DriverCards({ value, driver, handleOnChange }) {
                 <label className={styles.card} htmlFor={driver.id} key={id}>
                     <span><img src={imgURL} alt="driver" className={styles.image}/></span>
                     {image && (<span className={styles.team} id={id}>{driver.lastname}</span>)}
-                    <span className={styles.cost} id={id}>{driver.cost}</span>
+                    <span className={styles.cost} id={id}>{cost}</span>
                 </label>
             </li>
     );

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { apiConfig } from '../api/configapi';
+import { apiConfig } from '../config/configapi';
 import axios from 'axios';
 
 export const useDrivers = (driverID) => {
@@ -11,7 +11,7 @@ export const useDrivers = (driverID) => {
         url: 'https://api-formula-1.p.rapidapi.com/drivers',
         params: {id: `${driverID}`},
         headers: {
-            'X-RapidAPI-Host': 'api-formula-1.p.rapidapi.com',
+            'X-RapidAPI-Host': 'config-formula-1.p.rapidapi.com',
             'X-RapidAPI-Key': apiKey
         }
     };
