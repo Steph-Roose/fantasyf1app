@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useCollection } from '../../hooks/useCollection';
 import { useFirestore } from '../../hooks/useFirestore';
+import {useAuthContext} from '../../hooks/useAuthContext';
 import DriverCards from '../../components/constructs/DriverCards/DriverCards';
 
 import styles from './PickTeam.module.css';
@@ -10,15 +11,22 @@ function PickTeam() {
     const [budget, setBudget] = useState(50);
     const [errorMsg, setErrorMsg] = useState(null);
     const [budgetMsg, setBudgetMsg] = useState(null);
+
     const { documents, error } = useCollection('drivers');
-    const { addDocument, response } = useFirestore('userTeams')
+    const { addDocument, response } = useFirestore('userTeams');
+    const { user } = useAuthContext();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addDocument({})
+
+        addDocument({
+            uid: user.uid,
+            selectedTeam,
+            points: 0
+        })
     }
 
-    const handleOnChange = (e) => {
+    const handleTeam = (e) => {
         const {value, checked} = e.target;
         const {userTeam} = selectedTeam;
 
@@ -35,17 +43,22 @@ function PickTeam() {
         return selectedTeam.userTeam;
     };
 
-    const handleSelection = (e, driver) => {
-        handleOnChange(e);
+    const handleBudget = (e, driver) => {
+        const {value, checked} = e.target;
 
-        if(e.target.checked && budget > 0) {
+        if(checked && budget > 0) {
             setBudget(budget - driver.cost);
-        } else if (!selectedTeam.userTeam.includes(e.target.value)) {
+        } else if (!selectedTeam.userTeam.includes(value)) {
             setBudget(budget);
             e.target.checked = false;
-        } else if (selectedTeam.userTeam.includes(e.target.value)) {
+        } else if (selectedTeam.userTeam.includes(value)) {
             setBudget(budget + driver.cost);
         }
+    }
+
+    const handleSelection = (e, driver) => {
+        handleTeam(e);
+        handleBudget(e, driver);
     }
 
     console.log(selectedTeam);
