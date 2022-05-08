@@ -23,7 +23,7 @@ export const useDrivers = (driverID) => {
         async function fetchData() {
             try {
                 const result = await axios.request(options);
-                setImgURL(result.data.response[0].image)
+                setImgURL(result.data.response[0].image);
 
             } catch (e) {
                 console.error(e);

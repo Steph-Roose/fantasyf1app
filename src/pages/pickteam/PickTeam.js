@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import { useCollection } from '../../hooks/useCollection';
 import { useFirestore } from '../../hooks/useFirestore';
-import {useAuthContext} from '../../hooks/useAuthContext';
+import { useAuthContext } from '../../hooks/useAuthContext';
 import DriverCards from '../../components/constructs/DriverCards/DriverCards';
 
 import styles from './PickTeam.module.css';
+import GetDrivers from '../../components/functionals/GetDrivers';
 
 function PickTeam() {
     const [selectedTeam, setSelectedTeam] = useState({userTeam: []});
@@ -13,17 +14,11 @@ function PickTeam() {
     const [budgetMsg, setBudgetMsg] = useState(null);
 
     const { documents, error } = useCollection('drivers');
-    const { addDocument, response } = useFirestore('userTeams');
+    const { addDocument } = useFirestore('userTeams');
     const { user } = useAuthContext();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        addDocument({
-            uid: user.uid,
-            selectedTeam,
-            points: 0
-        })
+    const getImage = () => {
+        return <GetDrivers />
     }
 
     const handleTeam = (e) => {
@@ -61,8 +56,6 @@ function PickTeam() {
         handleBudget(e, driver);
     }
 
-    console.log(selectedTeam);
-
     useEffect(() => {
         if(budget < 0) {
             setBudgetMsg("Insufficient funds for drivers selected.");
@@ -70,6 +63,18 @@ function PickTeam() {
             setBudgetMsg(null);
         }
     }, [budget])
+
+    console.log(selectedTeam);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        addDocument({
+            uid: user.uid,
+            selectedTeam,
+            points: 0
+        })
+    }
 
     return (
         <div className={styles.bg}>
@@ -82,24 +87,17 @@ function PickTeam() {
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className={styles.buttons}>
-                        <button className="btn">Save</button>
+                        <button className="btn" type="submit">Save</button>
                         <button className="btn">Cancel</button>
                     </div>
-                    <ul className={styles.drivers}>
-                        {documents && documents.sort((a, b) => b.cost - a.cost).map((driver) => {
-                            return <DriverCards
-                                key={driver.id}
-                                cost={driver.cost}
-                                value={driver.driverID}
-                                driver={driver}
-                                handleOnChange={(e) => handleSelection(e, driver)}
-                            />
+                    <div>
+                        {documents && documents.sort((a, b) => b.cost - a.cost).map((document) => {
+                            return <DriverCards driver={document}/>
                         })}
-                    </ul>
+                    </div>
                 </form>
                 {error && <p>{error}</p>}
             </div>
-
         </div>
     );
 }
