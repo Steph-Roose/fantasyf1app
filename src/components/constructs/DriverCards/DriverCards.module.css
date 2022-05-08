@@ -17,7 +17,7 @@ input[type="checkbox"] {
     border: none;
     border-radius: 50%;
 }
-.team {
+.name {
     background-color: #CCDDDD;
     display: block;
     border-radius: 21px;
@@ -47,7 +47,7 @@ input[type="checkbox"] {
     border-radius: 50%;
     background-color: #B1D3BD;
 }
-:checked + label .team, :checked + label .cost {
+:checked + label .name, :checked + label .cost {
     border-color: #008200;
     background-color: #B1D3BD;
 }

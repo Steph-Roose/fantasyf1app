@@ -5,7 +5,7 @@ import { useAuthContext } from '../../hooks/useAuthContext';
 import DriverCards from '../../components/constructs/DriverCards/DriverCards';
 
 import styles from './PickTeam.module.css';
-import GetDrivers from '../../components/functionals/GetDrivers';
+import GetDrivers from '../../components/functionals/GetDrivers/GetDrivers';
 
 function PickTeam() {
     const [selectedTeam, setSelectedTeam] = useState({userTeam: []});
@@ -17,8 +17,8 @@ function PickTeam() {
     const { addDocument } = useFirestore('userTeams');
     const { user } = useAuthContext();
 
-    const getImage = () => {
-        return <GetDrivers />
+    const getImage = (driverID) => {
+        return <GetDrivers driverID={driverID}/>
     }
 
     const handleTeam = (e) => {
@@ -90,11 +90,18 @@ function PickTeam() {
                         <button className="btn" type="submit">Save</button>
                         <button className="btn">Cancel</button>
                     </div>
-                    <div>
-                        {documents && documents.sort((a, b) => b.cost - a.cost).map((document) => {
-                            return <DriverCards driver={document}/>
+                    <ul className={styles.drivers}>
+                        {documents && documents.sort((a, b) => b.cost - a.cost).map((driver) => {
+                            return (
+                                <DriverCards
+                                    key={driver.id}
+                                    driver={driver}
+                                    image={getImage(driver.driverID)}
+                                    handleSelection={(e) => handleSelection(e, driver)}
+                                />
+                            )
                         })}
-                    </div>
+                    </ul>
                 </form>
                 {error && <p>{error}</p>}
             </div>
