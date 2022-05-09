@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useCollection } from '../../hooks/useCollection';
 import { useFirestore } from '../../hooks/useFirestore';
 import { useAuthContext } from '../../hooks/useAuthContext';
@@ -95,6 +95,7 @@ function PickTeam() {
                             return (
                                 <DriverCards
                                     key={driver.id}
+                                    value={driver.driverID}
                                     driver={driver}
                                     image={getImage(driver.driverID)}
                                     handleSelection={(e) => handleSelection(e, driver)}

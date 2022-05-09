@@ -9,26 +9,6 @@ function GetDrivers({ driverID }) {
     useEffect(() => {
         const apiKey = apiConfig.apiKey;
 
-        // const options = {
-        //     method: 'GET',
-        //     url: 'https://api-formula-1.p.rapidapi.com/drivers',
-        //     params: {id: `${driverID}`},
-        //     headers: {
-        //         'X-RapidAPI-Host': 'config-formula-1.p.rapidapi.com',
-        //         'X-RapidAPI-Key': apiKey
-        //     }
-        // };
-        //
-        // const getData = async () => {
-        //     try {
-        //         const result = await axios.request(options);
-        //         setImage(result.data.response[0].image);
-        //
-        //     } catch (e) {
-        //         console.error(e);
-        //     }
-        // }
-
         const options = {
             method: 'GET',
             headers: {
@@ -40,7 +20,6 @@ function GetDrivers({ driverID }) {
         fetch(`https://api-formula-1.p.rapidapi.com/drivers?id=${driverID}`, options)
             .then(response => response.json())
             .then(response => {
-                console.log(response)
                 setImgURL(response.response[0].image)
             })
             .catch(err => console.error(err));
