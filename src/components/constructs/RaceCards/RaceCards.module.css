@@ -1,0 +1,39 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    height: 340px;
+    position: relative;
+    border-radius: 6px;
+    border: 3px solid #004225;
+    background-color: #A9C6C6;
+    margin: 10px;
+    font-weight: bold;
+}
+.card img {
+    align-self: center;
+    margin-top: 15px;
+    width: 200px;
+}
+.card h3 {
+    align-self: center;
+    margin: 20px 10px 10px;
+}
+.card p {
+    align-self: flex-start;
+    margin: 5px 10px;
+}
+.card span {
+    font-weight: normal;
+    font-size: 13px;
+}
+.overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 3px;
+    border: none;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 1;
+    cursor: pointer;
+}

@@ -97,3 +97,34 @@ input:focus {
         flex-direction: row;
     }
 }
+
+/* layout pickteam, racecalendar */
+.backgroundtwo {
+    background-image: url("./assets/bg2.png");
+    background-position: top;
+    background-repeat: repeat;
+    width: 100%;
+    margin: 0;
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+.backgroundtwo .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #CCDDDD;
+    width: 1200px;
+    min-height: 100vh;
+    margin: 0 auto;
+}
+.container .cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1000px;
+    padding: 0 15px;
+    list-style-type: none;
+}

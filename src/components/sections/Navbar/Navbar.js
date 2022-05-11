@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useLogout } from '../../../hooks/useLogout';
-import {useAuthContext} from '../../../hooks/useAuthContext';
+import { useLogout } from '../../../hooks/authentification/useLogout';
+import { useAuthContext } from '../../../hooks/authentification/useAuthContext';
 
 // styles and images
 import styles from './Navbar.module.css';
@@ -27,7 +27,7 @@ function Navbar() {
                         location.pathname !== "/signup" ? <li><Link to="/signup">Sign up</Link></li> : <li><Link to="/login">Login</Link></li>
                     )}
 
-                    <li><Link to="/rules">Rules</Link></li>
+                    <li><Link to="/racecalendar">Race Calendar</Link></li>
                 </ul>
 
                 {user && (

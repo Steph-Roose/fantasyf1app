@@ -1,11 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCollection } from '../../hooks/useCollection';
 import { useFirestore } from '../../hooks/useFirestore';
-import { useAuthContext } from '../../hooks/useAuthContext';
+import { useAuthContext } from '../../hooks/authentification/useAuthContext';
+
+// components
 import DriverCards from '../../components/constructs/DriverCards/DriverCards';
 
+// styles and images
 import styles from './PickTeam.module.css';
-import GetDrivers from '../../components/functionals/GetDrivers/GetDrivers';
 
 function PickTeam() {
     const [selectedTeam, setSelectedTeam] = useState({userTeam: []});
@@ -16,10 +18,6 @@ function PickTeam() {
     const { documents, error } = useCollection('drivers');
     const { addDocument } = useFirestore('userTeams');
     const { user } = useAuthContext();
-
-    const getImage = (driverID) => {
-        return <GetDrivers driverID={driverID}/>
-    }
 
     const handleTeam = (e) => {
         const {value, checked} = e.target;
@@ -77,9 +75,9 @@ function PickTeam() {
     }
 
     return (
-        <div className={styles.bg}>
-            <div className={styles.container}>
-                <h2>Pick Team</h2>
+        <div className="backgroundtwo">
+            <div className="container">
+                <h2 className={styles.title}>Pick Team</h2>
                 <div className={styles.options}>
                     <p>Available budget: {budget}</p>
                     {errorMsg && <p className="error">{errorMsg}</p>}
@@ -88,16 +86,14 @@ function PickTeam() {
                 <form onSubmit={handleSubmit}>
                     <div className={styles.buttons}>
                         <button className="btn" type="submit">Save</button>
-                        <button className="btn">Cancel</button>
                     </div>
-                    <ul className={styles.drivers}>
+                    <ul className="cards">
                         {documents && documents.sort((a, b) => b.cost - a.cost).map((driver) => {
                             return (
                                 <DriverCards
                                     key={driver.id}
                                     value={driver.driverID}
                                     driver={driver}
-                                    image={getImage(driver.driverID)}
                                     handleSelection={(e) => handleSelection(e, driver)}
                                 />
                             )
