@@ -2,7 +2,7 @@ import {apiConfig} from '../../config/configapi';
 import {useEffect, useState} from 'react';
 import axios from 'axios';
 
-export const GetRaces = (raceType) => {
+export const GetRaces = () => {
     const [racesList, setRacesList] = useState([]);
 
     useEffect(() => {
@@ -18,7 +18,7 @@ export const GetRaces = (raceType) => {
 
         const getData = async () => {
             try {
-                const result = await axios.get(`https://api-formula-1.p.rapidapi.com/races?type=${raceType}&season=2022`, options);
+                const result = await axios.get(`https://api-formula-1.p.rapidapi.com/races?type=race&timezone=Europe%2FAmsterdam&season=2022`, options);
 
                 setRacesList(result.data.response);
 
@@ -29,7 +29,7 @@ export const GetRaces = (raceType) => {
 
         getData();
 
-    }, [raceType]);
+    }, []);
 
     return racesList
 }

@@ -69,7 +69,7 @@ function PickTeam() {
 
         addDocument({
             uid: user.uid,
-            selectedTeam,
+            selectedTeam: selectedTeam.userTeam,
             points: 0
         })
     }

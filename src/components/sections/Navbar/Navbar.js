@@ -24,9 +24,10 @@ function Navbar() {
                     )}
 
                     {!user && (
-                        location.pathname !== "/signup" ? <li><Link to="/signup">Sign up</Link></li> : <li><Link to="/login">Login</Link></li>
+                        location.pathname !== "/login" ? <li><Link to="/login">Login</Link></li> : <li><Link to="/signup">Sign up</Link></li>
                     )}
 
+                    {}
                     <li><Link to="/racecalendar">Race Calendar</Link></li>
                 </ul>
 

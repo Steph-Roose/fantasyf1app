@@ -5,7 +5,7 @@ import RaceCards from '../../components/constructs/RaceCards/RaceCards';
 import styles from './RaceCalendar.module.css';
 
 function RaceCalendar() {
-    const races = GetRaces('race');
+    const races = GetRaces();
 
     return (
         <div className="backgroundtwo">

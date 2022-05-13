@@ -43,7 +43,7 @@ input:focus {
     letter-spacing: 1px;
     margin-top: 7px;
     padding: 6px 12px;
-    width: 100px;
+    min-width: 100px;
     height: 36px;
     cursor: pointer;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
@@ -83,7 +83,7 @@ input:focus {
     justify-content: center;
     align-items: center;
     margin-top: 50px;
-    min-height: 450px;
+    min-height: 600px;
     background-color: #CCDDDD;
 }
 .background img {
