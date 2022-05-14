@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { projectAuth } from '../config/configfirebase';
+import {projectAuth, projectFirestore} from '../../config/configfirebase';
 import { useAuthContext } from './useAuthContext';
 
 export const useSignup = () => {
@@ -18,15 +18,14 @@ export const useSignup = () => {
             // first signup user (gives a response back)
             const res = await projectAuth.createUserWithEmailAndPassword(email, password);
 
-            if (!res) {
-                throw new Error('Could not complete signup')
-            }
-
             // then update profile with username
-            await res.user.updateProfile({ displayName })
+            await res.user.updateProfile({ displayName });
+
+            // create user document
+            await projectFirestore.collection('users').doc(res.user.uid).set({ displayName })
 
             // dispatch login action (context)
-            dispatch({ type: 'LOGIN', payload: res.user })
+            dispatch({ type: 'LOGIN', payload: res.user });
 
             // update state
             if (!isCancelled) {
@@ -45,7 +44,7 @@ export const useSignup = () => {
     }
 
     useEffect(() => {
-        return () => setIsCancelled(true)
+        return () => setIsCancelled(true);
     }, [])
 
     return { error, isPending, signup }

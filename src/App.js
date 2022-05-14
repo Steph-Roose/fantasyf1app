@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Redirect, Route } from 'react-router-dom';
-import { useAuthContext } from './hooks/useAuthContext';
+import { useAuthContext } from './hooks/authentification/useAuthContext';
 
 // pages
 import Home from './pages/home/Home';
@@ -12,6 +12,7 @@ import Signup from './pages/signup/Signup';
 // components
 import Navbar from './components/sections/Navbar/Navbar';
 import Account from './pages/account/Account';
+import RaceCalendar from './pages/racecalendar/RaceCalendar';
 
 function App() {
   const { user, authIsReady } = useAuthContext();
@@ -51,6 +52,10 @@ function App() {
                       <Route path="/signup">
                           {!user && <Signup />}
                           {user && <Redirect to="/"/>}
+                      </Route>
+
+                      <Route path="/racecalendar">
+                          <RaceCalendar />
                       </Route>
                   </Switch>
               </BrowserRouter>

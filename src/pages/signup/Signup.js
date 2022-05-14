@@ -1,17 +1,30 @@
-import React, {useState} from 'react';
-import { useSignup } from '../../hooks/useSignup';
+import React, { useState } from 'react';
+import { useSignup } from '../../hooks/authentification/useSignup';
 
 import styles from './Signup.module.css';
+import {useCollection} from '../../hooks/useCollection';
 
 function Signup(data) {
     const [displayName, setDisplayName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [checkUsername, setCheckUsername] = useState(null);
     const { signup, isPending, error } = useSignup();
+    const { documents } = useCollection('users');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        signup(email, password, displayName)
+        documents.map(user => {
+            if (displayName === user.displayName) {
+                setCheckUsername('Username already taken');
+                return checkUsername;
+            } else if (displayName.length < 4) {
+                setCheckUsername('Username should be at least 4 characters');
+                return checkUsername;
+            } else {
+                return signup(email, password, displayName);
+            }
+        })
     }
 
     return (
@@ -47,8 +60,8 @@ function Signup(data) {
 
                 {!isPending && <button type="submit" className="btn">Sign up</button>}
                 {isPending && <button className="btn" disabled>Loading</button>}
-
-                { error && <p>{error}</p> }
+                {checkUsername && <p>{checkUsername}</p>}
+                {error && <p>{error}</p>}
             </form>
         </div>
     );
