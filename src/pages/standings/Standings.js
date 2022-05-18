@@ -6,6 +6,7 @@ import {GetRaces} from '../../components/functionals/GetRaces';
 import {useCollection} from '../../hooks/useCollection';
 import DriverStandings from '../../components/constructs/DriverStandings/DriverStandings';
 import UserStandings from '../../components/constructs/UserStandings/UserStandings';
+import styles from '../pickteam/PickTeam.module.css';
 
 function Standings() {
     const [standings, setStandings] = useState(true);
@@ -21,14 +22,14 @@ function Standings() {
         setStandings(false);
     }
 
-    console.log(allRaces);
-
     return (
         <div className="background">
             <div className="text">
                 <h2>Fantasy Standings</h2>
-                <button className="btn" onClick={showDrivers}>Drivers</button>
-                <button className="btn" onClick={showUsers}>Users</button>
+                <div className={styles.buttons}>
+                    <button className="btn" onClick={showDrivers}>Drivers</button>
+                    <button className="btn" onClick={showUsers}>Users</button>
+                </div>
 
                 {standings && <DriverStandings drivers={documents} />}
                 {!standings && <UserStandings/>}

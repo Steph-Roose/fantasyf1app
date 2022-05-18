@@ -1,42 +1,24 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React from 'react';
 
 // styles and images
 import styles from './Home.module.css';
 import HomeImage from '../../assets/split4.jpg';
-import {GetRaces} from '../../components/functionals/GetRaces';
-import {GetRaceResults} from '../../components/functionals/GetRaceResults';
+import LastRace from "../../components/constructs/LastRace/LastRace";
+import UserTeam from '../../components/constructs/UserTeam/UserTeam';
 
 function Home() {
-    const [lastComplRace, setLastComplRace] = useState(null);
-    const races = GetRaces();
-
-    useEffect(() => {
-        const  getLastComplRace = () => {
-            setLastComplRace(races.filter(race => race.status === "Completed").slice(-1).map(race => race.id));
-        }
-        getLastComplRace()
-    }, [races])
-
-    console.log(lastComplRace);
-
-    const topThree = useCallback(() => {
-        const raceResults = GetRaceResults(lastComplRace);
-        if(raceResults) {
-
-        }
-    }, [lastComplRace])
-
-    topThree();
 
     return (
         <div className="background">
             <div className="text">
                 <div className={styles.top}>
-                    <h2>My Team</h2>
+                    <h2 className={styles.title}>My Team</h2>
+                    <UserTeam/>
                 </div>
 
                 <div className={styles.bottom}>
                     <h2>Last Race</h2>
+                    <LastRace/>
                 </div>
             </div>
 

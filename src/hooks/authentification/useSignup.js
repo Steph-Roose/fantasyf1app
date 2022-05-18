@@ -22,7 +22,7 @@ export const useSignup = () => {
             await res.user.updateProfile({ displayName });
 
             // create user document
-            await projectFirestore.collection('users').doc(res.user.uid).set({ displayName })
+            await projectFirestore.collection('users').doc(res.user.uid).set({ displayName, userTeam: null, points: 0 })
 
             // dispatch login action (context)
             dispatch({ type: 'LOGIN', payload: res.user });

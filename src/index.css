@@ -51,11 +51,18 @@ input:focus {
 .btn:hover {
     background: #F50000;
 }
+.btn:disabled {
+    background: #FCB2B2;
+    cursor: auto;
+}
 .error {
     color: #CC0000;
     font-weight: bold;
 }
-
+.confirmation {
+    color: #006600;
+    font-weight: bold;
+}
 /* layout login, sign up*/
 .bg-image {
     background-image: url("./assets/bg1.jpg");
@@ -63,7 +70,6 @@ input:focus {
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height: 100vh;
     display: flex;
     flex-direction: row-reverse;
     margin: 0;
@@ -72,8 +78,8 @@ input:focus {
 .background {
     display: flex;
     flex-direction: column;
-    height: 100vh;
     width: 100vw;
+    height: 100vh;
     margin: 0;
 }
 .text {
@@ -83,7 +89,7 @@ input:focus {
     justify-content: center;
     align-items: center;
     margin-top: 50px;
-    min-height: 600px;
+    min-height: 700px;
     background-color: #CCDDDD;
 }
 .background img {
@@ -95,6 +101,7 @@ input:focus {
 @media only screen and (min-width: 900px) {
     .background {
         flex-direction: row;
+        height: 100vh;
     }
 }
 
@@ -105,7 +112,7 @@ input:focus {
     background-repeat: repeat;
     width: 100%;
     margin: 0;
-    display: block;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -121,8 +128,7 @@ input:focus {
 }
 .container .cards {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     justify-content: center;
     max-width: 1000px;
     padding: 0 15px;
