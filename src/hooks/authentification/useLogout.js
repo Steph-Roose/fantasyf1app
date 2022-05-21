@@ -10,28 +10,22 @@ export const useLogout = () => {
     const { dispatch } = useAuthContext();
 
     const logout = async () => {
-        // reset error every time the user logs out
         setError(null);
-        // start to request to log the user out
         setIsPending(true);
 
-        // log the user out
         try {
             await projectAuth.signOut();
 
-            // dispatch logout action (context)
             dispatch({ type: 'LOGOUT' })
 
-            // update state
             if (!isCancelled) {
                 setError(null);
                 setIsPending(false);
             }
 
-        } catch (e) {
+        } catch (err) {
             if (!isCancelled) {
-                console.log(e.message);
-                setError(e.message);
+                setError(err.message);
                 setIsPending(false);
             }
         }

@@ -1,18 +1,17 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useState} from 'react';
+import { useCollection } from '../../hooks/Firestore/useCollection';
 
-// styles and images
-import StandingsImage from '../../assets/split3.jpg';
-import {GetRaces} from '../../components/functionals/GetRaces';
-import {useCollection} from '../../hooks/useCollection';
+// components
 import DriverStandings from '../../components/constructs/DriverStandings/DriverStandings';
 import UserStandings from '../../components/constructs/UserStandings/UserStandings';
-import styles from '../pickteam/PickTeam.module.css';
+
+// styles and images
+import styles from './Standings.module.css';
+import StandingsImage from '../../assets/split2.jpg';
 
 function Standings() {
     const [standings, setStandings] = useState(true);
-    const [completedRacesIDs, setCompletedRacesIDs] = useState(null);
-    const {documents, error} = useCollection('drivers');
-    const allRaces = GetRaces();
+    const { documents, error } = useCollection('drivers');
 
     const showDrivers = () => {
         setStandings(true);
@@ -25,15 +24,15 @@ function Standings() {
     return (
         <div className="background">
             <div className="text">
-                <h2>Fantasy Standings</h2>
+                <h2>Standings</h2>
                 <div className={styles.buttons}>
-                    <button className="btn" onClick={showDrivers}>Drivers</button>
-                    <button className="btn" onClick={showUsers}>Users</button>
+                    <button className={styles['standings-btn']} onClick={showDrivers}>Drivers</button>
+                    <button className={styles['standings-btn']} onClick={showUsers}>Users</button>
                 </div>
 
                 {standings && <DriverStandings drivers={documents} />}
                 {!standings && <UserStandings/>}
-
+                {error && <p>{error}</p>}
             </div>
 
             <img

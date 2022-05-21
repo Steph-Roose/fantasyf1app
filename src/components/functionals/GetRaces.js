@@ -1,6 +1,6 @@
-import {apiConfig} from '../../config/configapi';
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { apiConfig } from '../../config/configapi';
 
 export const GetRaces = () => {
     const [racesList, setRacesList] = useState([]);

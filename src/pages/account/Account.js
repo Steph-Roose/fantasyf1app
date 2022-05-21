@@ -10,17 +10,11 @@ function Account() {
     const { user } = useAuthContext();
     const [newEmail, setNewEmail] = useState(user.email);
     const [newPassword, setNewPassword] = useState(user.password);
-    const [newDisplayName, setNewDisplayName] = useState(user.displayName);
-    const { error, isPending, updateLoginDetails, deleteUser } = useUpdateUser();
+    const { error, isPending, updateLoginDetails } = useUpdateUser();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        updateLoginDetails(newEmail, newPassword, newDisplayName);
-    }
-
-    const handleDelete = (e) => {
-        e.preventDefault();
-        deleteUser();
+        updateLoginDetails(newEmail, newPassword);
     }
 
     return (
@@ -28,50 +22,44 @@ function Account() {
 
             <div className="text">
                 <h2 className={styles.title}>My Account</h2>
-                <div className={styles.account}>
-                    <form onSubmit={handleSubmit} className={styles.details}>
-                        <label>
-                            <span>Username:</span>
-                            <input
-                                type="text"
-                                onChange={(e) => setNewDisplayName(e.target.value)}
-                                value={newDisplayName}
-                            />
-                        </label>
+                <form onSubmit={handleSubmit} className={styles.account}>
+                    <label>
+                        <span>Username:</span>
+                        <input
+                            type="text"
+                            value={user.displayName}
+                            disabled
+                        />
+                    </label>
 
-                        <label>
-                            <span>Email:</span>
-                            <input
-                                type="email"
-                                onChange={(e) => setNewEmail(e.target.value)}
-                                value={newEmail}
-                            />
-                        </label>
+                    <label>
+                        <span>Email:</span>
+                        <input
+                            type="email"
+                            onChange={(e) => setNewEmail(e.target.value)}
+                            value={newEmail}
+                        />
+                    </label>
 
-                        <label>
-                            <span>Password:</span>
-                            <input
-                                type="password"
-                                onChange={(e) => setNewPassword(e.target.value)}
-                                value={newPassword}
-                                placeholder="*****"
-                            />
-                        </label>
+                    <label>
+                        <span>Password:</span>
+                        <input
+                            type="password"
+                            onChange={(e) => setNewPassword(e.target.value)}
+                            value={newPassword}
+                            placeholder="*****"
+                        />
+                    </label>
 
-                        {!isPending && <button type="submit" className="btn">Save</button>}
-                        {isPending && <button className="btn" disabled>Loading</button>}
-                        {error && <p>{error}</p>}
-                    </form>
-                    <form onSubmit={handleDelete}>
-                        {!isPending && <button type="submit" className="btn">Delete Account</button>}
-                        {isPending && <button className="btn" disabled>Loading</button>}
-                    </form>
-                </div>
+                    {!isPending && <button type="submit" className="btn">Save</button>}
+                    {isPending && <button className="btn" disabled>Loading</button>}
+                    {error && <p>{error}</p>}
+                </form>
             </div>
 
             <img
                 src={AccountImage}
-                alt="ferrari"
+                alt="Verstappen at Zandvoort"
             />
         </div>
     );

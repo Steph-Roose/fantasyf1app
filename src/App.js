@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Redirect, Route } from 'react-router-dom';
+
+// hooks
 import { useAuthContext } from './hooks/authentification/useAuthContext';
 
 // pages
@@ -8,11 +10,11 @@ import PickTeam from './pages/pickteam/PickTeam';
 import Standings from './pages/standings/Standings';
 import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
+import Account from './pages/account/Account';
+import RaceCalendar from './pages/racecalendar/RaceCalendar';
 
 // components
 import Navbar from './components/sections/Navbar/Navbar';
-import Account from './pages/account/Account';
-import RaceCalendar from './pages/racecalendar/RaceCalendar';
 
 function App() {
   const { user, authIsReady } = useAuthContext();

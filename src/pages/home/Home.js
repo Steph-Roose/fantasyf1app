@@ -1,10 +1,12 @@
 import React from 'react';
 
+// components
+import LastRace from "../../components/constructs/LastRace/LastRace";
+import MyTeam from '../../components/constructs/MyTeam/MyTeam';
+
 // styles and images
 import styles from './Home.module.css';
-import HomeImage from '../../assets/split4.jpg';
-import LastRace from "../../components/constructs/LastRace/LastRace";
-import UserTeam from '../../components/constructs/UserTeam/UserTeam';
+import HomeImage from '../../assets/split3.jpg';
 
 function Home() {
 
@@ -13,7 +15,7 @@ function Home() {
             <div className="text">
                 <div className={styles.top}>
                     <h2 className={styles.title}>My Team</h2>
-                    <UserTeam/>
+                    <MyTeam/>
                 </div>
 
                 <div className={styles.bottom}>
@@ -24,7 +26,7 @@ function Home() {
 
             <img
                 src={HomeImage}
-                alt="shooey"
+                alt="Shooey with Ricciardo, Norris, and Zak Brown"
             />
         </div>
     );

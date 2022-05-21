@@ -1,24 +1,22 @@
-import {useAuthContext} from './useAuthContext';
-import {useEffect, useState} from 'react';
-import {projectAuth} from '../../config/configfirebase';
+import { useEffect, useState } from 'react';
+import { projectAuth } from '../../config/configfirebase';
+import { useAuthContext } from './useAuthContext';
 
 export const useUpdateUser = () => {
     const [isCancelled, setIsCancelled] = useState(false);
     const [error, setError] = useState(null);
     const [isPending, setIsPending] = useState(false);
-    const { dispatch } = useAuthContext();
+    const { user } = useAuthContext();
 
-    const updateLoginDetails = async (newEmail, newPassword, newDisplayName) => {
+    const updateLoginDetails = async (newEmail, newPassword) => {
         setError(null);
         setIsPending(true);
 
         try {
-            if (newEmail) {
+            if (newEmail !== user.email) {
                 await projectAuth.currentUser.updateEmail(newEmail);
-            } else if (newPassword) {
+            } else if (newPassword !== user.password) {
                 await projectAuth.currentUser.updatePassword(newPassword);
-            } else if (newDisplayName) {
-                await projectAuth.currentUser.updateProfile({ displayName: newDisplayName })
             }
 
             if (!isCancelled) {
@@ -27,29 +25,6 @@ export const useUpdateUser = () => {
             }
         } catch (err) {
             if (!isCancelled) {
-                console.log(err.message);
-                setError(err.message);
-                setIsPending(false);
-            }
-        }
-    }
-
-    const deleteUser = async () => {
-        setError(null);
-        setIsPending(true);
-
-        try {
-            await projectAuth.currentUser.delete;
-
-            dispatch({ type: 'LOGOUT' });
-
-            if (!isCancelled) {
-                setError(null);
-                setIsPending(false);
-            }
-        } catch (err) {
-            if (!isCancelled) {
-                console.log(err.message);
                 setError(err.message);
                 setIsPending(false);
             }
@@ -60,5 +35,5 @@ export const useUpdateUser = () => {
         return () => setIsCancelled(true);
     }, [])
 
-    return { error, isPending, updateLoginDetails, deleteUser }
+    return { error, isPending, updateLoginDetails }
 }

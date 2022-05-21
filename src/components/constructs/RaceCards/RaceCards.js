@@ -1,5 +1,6 @@
 import React from 'react';
 
+// styles and images
 import styles from './RaceCards.module.css';
 
 function RaceCards({ race }) {
@@ -7,7 +8,7 @@ function RaceCards({ race }) {
     const getRaceWeekend = () => {
         const lastRaceDay = new Date(race.date);
         const firstRaceDay = new Date(race.date);
-        const options = {month: 'short', day: 'numeric'};
+        const options = { month: 'short', day: 'numeric' };
 
         firstRaceDay.setDate(firstRaceDay.getDate() - 2);
 

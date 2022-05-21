@@ -17,7 +17,8 @@ h2 {
     font-weight: 700;
     font-size: 42px;
     color: #A20909;
-    margin: 0 30px 15px;
+    margin: 80px 30px 0;
+    padding: 15px;
 }
 ul {
     list-style-type: none;
@@ -74,7 +75,7 @@ input:focus {
     flex-direction: row-reverse;
     margin: 0;
 }
-/* layout home, account, standings, rules*/
+/* layout account, home, standings */
 .background {
     display: flex;
     flex-direction: column;
@@ -99,6 +100,9 @@ input:focus {
 }
 
 @media only screen and (min-width: 900px) {
+    h2 {
+        margin: 0 30px 15px;
+    }
     .background {
         flex-direction: row;
         height: 100vh;

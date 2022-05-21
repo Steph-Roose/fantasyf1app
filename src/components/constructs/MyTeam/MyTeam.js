@@ -1,13 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {useAuthContext} from '../../../hooks/authentification/useAuthContext';
-import {useCollection} from '../../../hooks/useCollection';
-import {useDocument} from '../../../hooks/useDocument';
-import {Link} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useAuthContext } from '../../../hooks/authentification/useAuthContext';
+import { useDocument } from '../../../hooks/Firestore/useDocument';
 
+// components
+import MyDrivers from './MyDrivers';
+
+// styles and images
 import styles from './UserTeam.module.css';
-import UserDrivers from './UserDrivers';
 
-function UserTeam() {
+function MyTeam() {
     const { user } = useAuthContext();
     const { document } = useDocument('users', user.uid);
     const [userTeam, setUserTeam] = useState(null);
@@ -34,13 +36,12 @@ function UserTeam() {
                     <tbody>
                     {userTeam.map(driver => {
                         return (
-                            <UserDrivers
+                            <MyDrivers
                                 key={driver}
                                 userDriver={driver}
                             />
                         )
-                    }
-                    )}
+                    })}
                     </tbody>
                 </table>
             }
@@ -48,4 +49,4 @@ function UserTeam() {
     );
 }
 
-export default UserTeam;
+export default MyTeam;

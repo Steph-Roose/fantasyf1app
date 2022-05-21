@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {useCollection} from '../../../hooks/useCollection';
+import React, { useEffect, useState } from 'react';
+import { useCollection } from '../../../hooks/Firestore/useCollection';
 
+// styles and images
 import styles from './UserTeam.module.css';
 
-function UserDrivers({ userDriver }) {
+function MyDrivers({ userDriver }) {
     const { documents, error } = useCollection('drivers');
     const [driver, setDriver] = useState(null);
 
@@ -14,7 +15,7 @@ function UserDrivers({ userDriver }) {
             }
         }
         getDriverDetails();
-    }, [documents])
+    }, [documents, userDriver])
 
     console.log(driver);
 
@@ -26,8 +27,9 @@ function UserDrivers({ userDriver }) {
                     <td className={styles.points}>{driver[0].points}</td>
                 </tr>
             }
+            {error && <p>{error}</p>}
         </>
     );
 }
 
-export default UserDrivers;
+export default MyDrivers;

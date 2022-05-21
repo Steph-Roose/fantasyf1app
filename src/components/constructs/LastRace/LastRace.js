@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {GetRaces} from '../../functionals/GetRaces';
-import {GetRaceResults} from "../../functionals/GetRaceResults";
-import RaceWinners from './RaceWinners';
+import React, { useEffect, useState } from 'react';
+
+// components
+import { GetRaces } from '../../functionals/GetRaces';
+import { GetRaceResults } from "../../functionals/GetRaceResults";
 
 // styles and images
 import styles from './LastRace.module.css';
@@ -46,12 +47,13 @@ function LastRace() {
                 </tr>
                 </thead>
                 <tbody>
-                {raceResults && raceResults.slice(0, 3).map((driver) => {
+                {raceResults && raceResults.slice(0, 3).map(driver => {
                         return (
-                            <RaceWinners
-                                key={driver.id}
-                                driver={driver}
-                            />
+                            <tr>
+                                <td className={styles.position}>{driver.position}</td>
+                                <td className={styles.name}>{driver.driver.name}</td>
+                                <td className={styles.team}>{driver.team.name}</td>
+                            </tr>
                         )
                 })}
                 </tbody>

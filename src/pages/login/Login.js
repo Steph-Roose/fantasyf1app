@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useLogin } from '../../hooks/authentification/useLogin';
 
 // styles
 import styles from './Login.module.css';
 
-function Login(props) {
+function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { login, error, isPending } = useLogin();

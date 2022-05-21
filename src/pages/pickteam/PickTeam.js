@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useCollection } from '../../hooks/useCollection';
-import { useFirestore } from '../../hooks/useFirestore';
+import { useHistory } from 'react-router-dom';
+import { timestamp } from '../../config/configfirebase';
+
+// hooks
+import { useCollection } from '../../hooks/Firestore/useCollection';
+import { useFirestore } from '../../hooks/Firestore/useFirestore';
+import { useDocument } from '../../hooks/Firestore/useDocument';
 import { useAuthContext } from '../../hooks/authentification/useAuthContext';
 
 // components
@@ -8,11 +13,10 @@ import DriverCards from '../../components/constructs/DriverCards/DriverCards';
 
 // styles and images
 import styles from './PickTeam.module.css';
-import {useDocument} from '../../hooks/useDocument';
 
 function PickTeam() {
     const [selectedTeam, setSelectedTeam] = useState({team: []});
-    const [budget, setBudget] = useState(50);
+    const [budget, setBudget] = useState(42);
     const [errorMsg, setErrorMsg] = useState(null);
     const [budgetMsg, setBudgetMsg] = useState(null);
     const [savedMsg, setSavedMsg] = useState(null);
@@ -21,6 +25,8 @@ function PickTeam() {
     const { documents, error } = useCollection('drivers');
     const { document } = useDocument('users', user.uid);
     const { updateDocument, response } = useFirestore('users');
+
+    const history = useHistory();
 
     const handleTeam = (e) => {
         const { value, checked } = e.target;
@@ -68,45 +74,60 @@ function PickTeam() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        let chosenTeam = selectedTeam.team;
+        const chosenTeam = selectedTeam.team;
+        const choseTeamAt = timestamp.fromDate(new Date());
 
         updateDocument(document.id, {
+            choseTeamAt,
             userTeam: chosenTeam
         })
         if(response) {
             setSavedMsg("Team saved");
             console.log(response);
         }
+
+        setTimeout(() => {
+            history.push("/");
+        }, 1000)
+    }
+
+    if(document) {
+        console.log(document);
     }
 
     return (
-        <div className="backgroundtwo">
+        <div className="backgroundtwo">Hie
             <div className="container">
                 <h2 className={styles.title}>Pick Team</h2>
-                <div className={styles.options}>
-                    <p>Available budget: {budget}</p>
-                    {errorMsg && <p className="error">{errorMsg}</p>}
-                    {budgetMsg && <p className="error">{budgetMsg}</p>}
-                    {savedMsg && <p className="confirmation">{savedMsg}</p>}
-                </div>
-                <form onSubmit={handleSubmit}>
-                    <div className={styles.buttons}>
-                        {!savedMsg && <button className="btn" type="submit">Save</button>}
-                        {savedMsg && <button className="btn" disabled>Save</button>}
-                    </div>
-                    <ul className="cards">
-                        {documents && documents.sort((a, b) => b.cost - a.cost).map((driver) => {
-                            return (
-                                <DriverCards
-                                    key={driver.id}
-                                    value={driver.driverID}
-                                    driver={driver}
-                                    handleSelection={(e) => handleSelection(e, driver)}
-                                />
-                            )
-                        })}
-                    </ul>
-                </form>
+                {document && document.userTeam && <p className="error">Userteam already selected</p>}
+                {document && !document.userTeam &&
+                    <>
+                        <div className={styles.options}>
+                            <p><span>Available budget: </span>{budget}</p>
+                            {errorMsg && <p className="error">{errorMsg}</p>}
+                            {budgetMsg && <p className="error">{budgetMsg}</p>}
+                            {savedMsg && <p className="confirmation">{savedMsg}</p>}
+                        </div>
+                        <form onSubmit={handleSubmit}>
+                            <div className={styles.buttons}>
+                                {!savedMsg && <button className="btn" type="submit">Save</button>}
+                                {savedMsg && <button className="btn" disabled>Save</button>}
+                            </div>
+                            <ul className="cards">
+                                {documents && documents.sort((a, b) => b.cost - a.cost).map((driver) => {
+                                    return (
+                                        <DriverCards
+                                            key={driver.id}
+                                            value={driver.driverID}
+                                            driver={driver}
+                                            handleSelection={(e) => handleSelection(e, driver)}
+                                        />
+                                    )
+                                })}
+                            </ul>
+                        </form>
+                    </>
+                }
                 {error && <p>{error}</p>}
             </div>
         </div>
