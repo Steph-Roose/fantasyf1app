@@ -1,6 +1,6 @@
-import {apiConfig} from '../../config/configapi';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import {useEffect, useState} from 'react';
+import { apiConfig } from '../../config/configapi';
 
 export const GetDrivers = (driverID) => {
     const [apiDriver, setApiDriver] = useState(null);

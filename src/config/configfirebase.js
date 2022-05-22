@@ -3,7 +3,7 @@ import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/storage';
 
-// Firebase config
+// Firestore config
 const firebaseConfig = {
     apiKey: "AIzaSyCeoizgftkNp_AobJsZaFwbhApxrBji6cc",
     authDomain: "f1fantasy-48b8d.firebaseapp.com",
@@ -19,9 +19,8 @@ firebase.initializeApp(firebaseConfig);
 // initialize services
 const projectFirestore = firebase.firestore();
 const projectAuth = firebase.auth();
-const projectStorage = firebase.storage();
 
 // timestamp
 const timestamp = firebase.firestore.Timestamp;
 
-export { projectFirestore, projectAuth, projectStorage, timestamp }
+export { projectFirestore, projectAuth, timestamp }

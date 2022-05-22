@@ -1,9 +1,9 @@
 import React from 'react';
 
-function UserStandings(props) {
+function UserStandings() {
     return (
         <div>
-            <h3>User Standings</h3>
+            <p>Under construction</p>
         </div>
     );
 }

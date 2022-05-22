@@ -34,7 +34,7 @@ function Navbar() {
                 {user && (
                     <ul className={styles.account}>
                         <li>
-                            <button onClick={ logout } className="btn">Logout</button>
+                            <button onClick={logout} className="btn">Logout</button>
                         </li>
                         <li>
                             <Link to="/account" className={styles.logo}>

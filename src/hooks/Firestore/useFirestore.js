@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useState } from 'react';
-import { projectFirestore, timestamp } from '../config/configfirebase';
+import { projectFirestore, timestamp } from '../../config/configfirebase';
 
 let initialState = {
     document: null,
@@ -16,6 +16,8 @@ const firestoreReducer = (state, action) => {
             return { isPending: false, document: action.payload, success: true, error: null}
         case 'UPDATED_DOC':
             return { isPending: false, document: action.payload, success: true, error: null}
+        case 'DELETED_DOC':
+            return { isPending: false, document: null, success: true, error: null}
         case 'ERROR':
             return { isPending: false, document: null, success: false, error: action.payload}
         default:
@@ -24,21 +26,17 @@ const firestoreReducer = (state, action) => {
 }
 
 export const useFirestore = (collection) => {
-    // "response" instead of "state" now because it semi-represents the data that we get back from Firestore.
     const [response, dispatch] = useReducer(firestoreReducer, initialState);
     const [isCancelled, setIsCancelled] = useState(false);
 
-    // collection reference
     const ref = projectFirestore.collection(collection);
 
-    // only dispatch if the page isn't unmounted
     const dispatchIfNotCancelled = (action) => {
         if(!isCancelled) {
             dispatch(action);
         }
     }
 
-    // add a document
     const addDocument = async (doc) => {
         dispatch({ type: 'IS_PENDING' });
 
@@ -52,31 +50,29 @@ export const useFirestore = (collection) => {
         }
     }
 
-    // delete a document
     const deleteDocument = async (id) => {
-        dispatch({ type: 'IS_PENDING' })
+        dispatch({ type: 'IS_PENDING' });
 
         try {
-            await ref.doc(id).delete()
-            dispatchIfNotCancelled({ type: 'DELETED_DOCUMENT' })
+            await ref.doc(id).delete();
+            dispatchIfNotCancelled({ type: 'DELETED_DOC' });
         }
         catch (err) {
-            dispatchIfNotCancelled({ type: 'ERROR', payload: 'could not delete' })
+            dispatchIfNotCancelled({ type: 'ERROR', payload: 'Could not delete' });
         }
     }
 
-    // update a document
     const updateDocument = async (id, updates) => {
         dispatch({ type: 'IS_PENDING'});
 
         try {
             const updatedDocument = await ref.doc(id).update(updates);
             dispatchIfNotCancelled({ type: 'UPDATED_DOC', payload: updatedDocument });
-            return updatedDocument
+            return updatedDocument;
         }
         catch (err) {
             dispatchIfNotCancelled({ type: 'ERROR', payload: err.message });
-            return null
+            return null;
         }
     }
 

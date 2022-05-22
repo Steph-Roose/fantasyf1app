@@ -1,0 +1,16 @@
+.results {
+    width: 360px;
+    margin: 20px;
+}
+.results th {
+    background-color: #77B28C;
+    padding: 2px 4px;
+    text-align: start;
+}
+.results td {
+    padding: 2px 4px;
+}
+.results .position {
+    text-align: center;
+    width: 40px;
+}

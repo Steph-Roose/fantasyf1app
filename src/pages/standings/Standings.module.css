@@ -1,0 +1,12 @@
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.standings-btn {
+    background-color: #CCDDDD;
+    font-size: 15px;
+    text-decoration: underline;
+    border: none;
+    cursor: pointer;
+}

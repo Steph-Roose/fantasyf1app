@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useSignup } from '../../hooks/authentification/useSignup';
+import { useCollection } from '../../hooks/Firestore/useCollection';
 
+// styles and images
 import styles from './Signup.module.css';
-import {useCollection} from '../../hooks/useCollection';
 
-function Signup(data) {
+function Signup() {
     const [displayName, setDisplayName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

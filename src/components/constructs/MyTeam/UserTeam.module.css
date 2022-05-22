@@ -1,0 +1,29 @@
+
+.userteam a {
+    color: #FFFFFF;
+    background: #FF1900;
+    text-decoration: none;
+    border: none;
+    border-radius: 21px;
+    padding: 6px 12px;
+    width: 100px;
+    height: 36px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+}
+.drivers {
+    width: 320px;
+    margin: 20px;
+}
+.drivers th {
+    background-color: #77B28C;
+    padding: 2px 4px;
+    text-align: start;
+}
+.drivers td {
+    padding: 2px 4px;
+}
+.drivers .points {
+    text-align: center;
+    width: 80px;
+}

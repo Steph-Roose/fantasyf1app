@@ -1,10 +1,10 @@
 import React from 'react';
 
-function DriverStandings(props) {
+function DriverStandings() {
 
     return (
         <div>
-            <h3>Driver Standings</h3>
+            <p>Under construction</p>
         </div>
     );
 }

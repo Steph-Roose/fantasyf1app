@@ -1,5 +1,7 @@
 import React from 'react';
-import {GetDrivers} from '../../functionals/GetDrivers';
+
+// components
+import { GetDrivers } from '../../functionals/GetDrivers';
 
 // styles and images
 import styles from './DriverCards.module.css';
