@@ -20,7 +20,7 @@ function MyTeam() {
         }
     }, [document])
 
-    console.log(userTeam);
+    console.log(user.email);
 
     return (
         <div className={styles.userteam}>

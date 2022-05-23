@@ -81,32 +81,24 @@ function PickTeam() {
             choseTeamAt,
             userTeam: chosenTeam
         })
-        if(response) {
-            setSavedMsg("Team saved");
-            console.log(response);
-        }
 
         setTimeout(() => {
             history.push("/");
-        }, 1000)
-    }
-
-    if(document) {
-        console.log(document);
+        }, 1500)
     }
 
     return (
         <div className="backgroundtwo">Hie
             <div className="container">
                 <h2 className={styles.title}>Pick Team</h2>
-                {document && document.userTeam && <p className="error">Userteam already selected</p>}
+                {document && document.userTeam && <p className="confirmation">Team saved. Check the home-page for your team.</p>}
                 {document && !document.userTeam &&
                     <>
                         <div className={styles.options}>
+                            <p>Pick three drivers</p>
                             <p><span>Available budget: </span>{budget}</p>
                             {errorMsg && <p className="error">{errorMsg}</p>}
                             {budgetMsg && <p className="error">{budgetMsg}</p>}
-                            {savedMsg && <p className="confirmation">{savedMsg}</p>}
                         </div>
                         <form onSubmit={handleSubmit}>
                             <div className={styles.buttons}>

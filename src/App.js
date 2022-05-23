@@ -12,6 +12,7 @@ import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 import Account from './pages/account/Account';
 import RaceCalendar from './pages/racecalendar/RaceCalendar';
+import Rules from './pages/rules/Rules';
 
 // components
 import Navbar from './components/sections/Navbar/Navbar';
@@ -58,6 +59,10 @@ function App() {
 
                       <Route path="/racecalendar">
                           <RaceCalendar />
+                      </Route>
+
+                      <Route path="/rules">
+                          <Rules />
                       </Route>
                   </Switch>
               </BrowserRouter>
