@@ -29,6 +29,8 @@ function Navbar() {
 
                     {}
                     <li><Link to="/racecalendar">Race Calendar</Link></li>
+
+                    <li><Link to="/rules">Rules</Link></li>
                 </ul>
 
                 {user && (

@@ -17,8 +17,6 @@ function MyDrivers({ userDriver }) {
         getDriverDetails();
     }, [documents, userDriver])
 
-    console.log(driver);
-
     return (
         <>
             {driver &&
