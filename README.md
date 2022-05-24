@@ -13,7 +13,7 @@ Via Max Verstappen en de Netflix-serie Drive to Survive is de populariteit van d
 
 Met deze applicatie kun je jouw eigen Formule 1 fantasy-spel starten. Het enige wat je vrienden hiervoor hoeven te doen, is een account aanmaken en een team samenstellen. De applicatie haalt via de API API-FORMULA-1 de uitslagen van de kwalificaties en races op en berekent per coureur de punten in het fantasy-spel. Gebruikers kunnen in het klassement zien hoe goed hun team het doet ten opzichte van de andere gebruikers. Happy racing!
 
-![screenshot pickteam-page](fantasyf1app/src/assets/screenshot.png)
+![screenshot pickteam-page](src/assets/screenshot.png)
 
 **Benodigdheden voor algemeen gebruik**
 
