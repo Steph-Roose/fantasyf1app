@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { apiConfig } from '../../config/configapi';
+import { apiConfig } from '../../config/apiconfig';
 
 export const GetRaceResults = (raceID) => {
     const [raceResults, setRaceResults] = useState([]);
